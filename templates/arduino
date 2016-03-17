@@ -1,0 +1,11 @@
+#This is a new ino file
+
+#Do all of your setup stuff here
+void setup() {
+
+}
+
+#Do all of your main loop items here
+void loop() {
+
+}

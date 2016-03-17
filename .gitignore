@@ -1,0 +1,6 @@
+bundle
+vim-addons
+.DS_Store
+.netrwhist
+doc/tags
+sessions
