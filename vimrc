@@ -1,4 +1,5 @@
 set nocompatible              " be iMproved, required
+colorscheme default
 
 let $VIMHOME = $HOME."/.vim/"
 
@@ -10,6 +11,12 @@ call vundle#begin()"
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
+Plugin 'gmarik/sudo-gui.vim'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'nanotech/jellybeans.vim'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'nathanaelkane/vim-indent-guides'
 
 " Your stuff is going go here...
 
@@ -45,14 +52,30 @@ set esckeys       " Allow escape key in insert mode
 "set cursorline    " Highlight the line we're on
 set encoding=utf8 " Really, people still use ASCII
 
+syntax enable
+set background=dark
+"colorscheme jellybeans
+"set ofu=syntaxcomplete#Complete
+
+" Better Completion
+set completeopt=longest,menuone,preview
+
 "Enable new file templating system
 autocmd BufNewFile * :silent! exec ":0r ".$VIMHOME."templates/".&ft
-
 
 "Allow :Build :Upload for .ino files
 autocmd BufReadPre,FileReadPre *.ino command Build !arduino --verify %
 autocmd BufReadPre,FileReadPre *.ino command Upload !arduino --upload % 
-autocmd BufReadPre,FileReadPre *.ino command B Build
-autocmd BufReadPre,FileReadPre *.ino command U Upload
+autocmd BufReadPre,FileReadPre *.ino nmap <leader>B :Build<CR>
+autocmd BufReadPre,FileReadPre *.ino nmap <leader>b :Build<CR>
+autocmd BufReadPre,FileReadPre *.ino nmap <leader>U :Upload<CR>
+autocmd BufReadPre,FileReadPre *.ino nmap <leader>u :Upload<CR>
 
+"Configure plugins
 
+" ---------------
+" Vundle
+" ---------------
+nmap <Leader>bi :BundleInstall<CR>
+nmap <Leader>bu :BundleInstall!<CR> " Because this also updates
+nmap <Leader>bc :BundleClean<CR>
