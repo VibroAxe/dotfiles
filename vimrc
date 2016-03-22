@@ -10,20 +10,24 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()"
 
 " let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
-Plugin 'gmarik/sudo-gui.vim'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'nanotech/jellybeans.vim'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'nathanaelkane/vim-indent-guides'
+Bundle 'gmarik/Vundle.vim'
+Bundle 'gmarik/sudo-gui.vim'
+Bundle 'vim-airline/vim-airline'
+Bundle 'vim-airline/vim-airline-themes'
+Bundle 'nanotech/jellybeans.vim'
+Bundle 'airblade/vim-gitgutter'
+Bundle 'nathanaelkane/vim-indent-guides'
+Bundle 'scrooloose/syntastic'
+Bundle 'rodjek/vim-puppet'
+
 
 " Your stuff is going go here...
 
-" All of your Plugins must be added before the following line
+" All of your Bundles must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
 
+let leadermap="\\"
 
 set expandtab     " Soft tabs all the things
 set tabstop=2     " 2 spaces is used almost everywhere now
@@ -71,7 +75,7 @@ autocmd BufReadPre,FileReadPre *.ino nmap <leader>b :Build<CR>
 autocmd BufReadPre,FileReadPre *.ino nmap <leader>U :Upload<CR>
 autocmd BufReadPre,FileReadPre *.ino nmap <leader>u :Upload<CR>
 
-"Configure plugins
+"Configure Pluginss
 
 " ---------------
 " Vundle
@@ -79,3 +83,12 @@ autocmd BufReadPre,FileReadPre *.ino nmap <leader>u :Upload<CR>
 nmap <Leader>bi :BundleInstall<CR>
 nmap <Leader>bu :BundleInstall!<CR> " Because this also updates
 nmap <Leader>bc :BundleClean<CR>
+
+" ---------------
+" Syntastic
+" ---------------
+let g:syntastic_enable_signs=1
+let g:syntastic_auto_loc_list=1
+
+let g:syntastic_puppet_puppetlint_args = '--no-80chars-check --no-class_inherits_from_params_class-check --no-only_variable_string'
+
