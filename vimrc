@@ -29,6 +29,24 @@ filetype plugin indent on    " required
 
 let leadermap="\\"
 
+" Fix vim's bad handling of the numpad
+inoremap <Esc>Oq 1
+inoremap <Esc>Or 2
+inoremap <Esc>Os 3
+inoremap <Esc>Ot 4
+inoremap <Esc>Ou 5
+inoremap <Esc>Ov 6
+inoremap <Esc>Ow 7
+inoremap <Esc>Ox 8
+inoremap <Esc>Oy 9
+inoremap <Esc>Op 0
+inoremap <Esc>On .
+noremap <Esc>OQ /
+inoremap <Esc>OR *
+inoremap <Esc>Ol +
+inoremap <Esc>OS -
+inoremap <Esc>OM <Enter>
+
 set expandtab     " Soft tabs all the things
 set tabstop=2     " 2 spaces is used almost everywhere now
 set shiftwidth=2  " When using >> then use 2 spaces
