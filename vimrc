@@ -47,6 +47,11 @@ inoremap <Esc>Ol +
 inoremap <Esc>OS -
 inoremap <Esc>OM <Enter>
 
+" Enable vim's mouse mode
+set mouse=a       "Enable mouse support and marvel at the ability to click around and mouse wheel scroll o_O
+vmap <C-C> y      "Ctrl_C to yank (Copy)
+vmap <C-V> p      "Ctrl_V to paste
+
 set expandtab     " Soft tabs all the things
 set tabstop=2     " 2 spaces is used almost everywhere now
 set shiftwidth=2  " When using >> then use 2 spaces
