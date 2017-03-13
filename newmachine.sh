@@ -1,9 +1,13 @@
 #!/bin/bash
 
-#attempt to grab ssh keys from core.tnnt
+# attempt to grab ssh keys from core.tnnt
 echo "Attempting to grab ssh keys from tnnt"
 scp -r vibs@core.tnnt.co.uk:.ssh ~/.ssh
 rm ~/.ssh/authorized_keys
+
+# Assume debian/ubuntu
+sudo apt-get install sudo tmux git vim
+
 
 #Setup git
 git config --global user.name "VibroAxe"
