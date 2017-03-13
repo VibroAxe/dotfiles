@@ -2,7 +2,7 @@
 
 # attempt to grab ssh keys from core.tnnt
 echo "Attempting to grab ssh keys from tnnt"
-scp -r vibs@core.tnnt.co.uk:.ssh ~/.ssh
+scp -r vibs@core.tnnt.co.uk:.ssh/ ~/
 rm ~/.ssh/authorized_keys
 
 # Assume debian/ubuntu
