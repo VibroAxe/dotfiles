@@ -1,0 +1,90 @@
+# /etc/skel/.bashrc
+#
+# This file is sourced by all *interactive* bash shells on startup,
+# including some apparently interactive shells such as scp and rcp
+# that can't tolerate any output.  So make sure this doesn't display
+# anything or bad things will happen !
+
+eval "$(thefuck --alias retry)"
+alias r=retry
+
+# Define your own preexec() or postexec() functions to override
+# the default, empty definitions in this file.
+#
+
+# Tie into the DEBUG event to get a zsh-like preexec hook
+# A more complete version at: http://glyf.livejournal.com/63106.html
+preexec() { :; }    # Default empty function
+postexec() { :; }   # Default empty function
+preexec_invoke_exec () {
+  [ -n "$COMP_LINE" ] && return  # Completing, do nothing
+  preexec "$(history 1 | sed -e "s/^[ ]*[0-9]*[ ]*//g")";
+}
+trap 'preexec_invoke_exec' DEBUG
+PROMPT_COMMAND='postexec'
+
+preexec() {
+  update-env-forwarding;
+}
+
+
+
+
+#magic for x11 forward in screen
+function update-env-forwarding
+{
+    SCREEN_DISPLAY=~/.screen/.display
+    SCREEN_SSH_AUTH_SOCK=~/.screen/.ssh_auth_sock
+    if [ -z "$STY" -a -z "$TMUX" ]; then
+        echo $DISPLAY > $SCREEN_DISPLAY
+	echo $SSH_AUTH_SOCK > $SCREEN_SSH_AUTH_SOCK
+    else
+	if [ -f "$SCREEN_DISPLAY" ]; then
+        	export DISPLAY=`cat $SCREEN_DISPLAY`
+	fi
+	if [ -f "$SCREEN_SSH_AUTH_SOCK" ]; then
+		export SSH_AUTH_SOCK=`cat $SCREEN_SSH_AUTH_SOCK`
+	fi
+    fi
+}
+
+# -- Improved X11 forwarding through GNU Screen (or tmux).
+# If not in screen or tmux, update the DISPLAY cache.
+# If we are, update the value of DISPLAY to be that in the cache.
+# enable bash completion in interactive shells
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
+fi
+
+shopt -s histverify
+# Enable reverse bash history lookup on shift+tab
+bind '"\e[Z": reverse-search-history'
+
+
+# enable color support of ls and also add handy aliases
+if [ "$TERM" != "dumb" ]; then
+    [ -e "$HOME/.dircolors" ] && DIR_COLORS="$HOME/.dircolors"
+    [ -e "$DIR_COLORS" ] || DIR_COLORS=""
+    eval "`dircolors -b $DIR_COLORS`"
+    alias ls='ls --color=auto'
+    alias dir='ls --color=auto --format=vertical'
+    alias vdir='ls --color=auto --format=long'
+fi
+
+
+# Test for an interactive shell.  There is no need to set anything
+# past this point for scp and rcp, and it's important to refrain from
+# outputting anything in those cases.
+if [[ $- != *i* ]] ; then
+	# Shell is non-interactive.  Be done now!
+	return
+fi
+
+
+# Put your fun stuff here.
+alias apt-get='sudo apt-get'
+alias systemctl='sudo systemctl'

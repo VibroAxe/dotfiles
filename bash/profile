@@ -1,0 +1,32 @@
+# /etc/skel/.bash_profile
+
+# if running bash
+if [ -n "$BASH_VERSION" ]; then
+    # include .bashrc if it exists
+    if [ -f "$HOME/.bashrc" ]; then
+        . "$HOME/.bashrc"
+    fi
+fi
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
+
+# set PATH so it includes user's private scripts if it exists
+if [ -d "$HOME/scripts" ] ; then
+    PATH="$HOME/scripts:$PATH"
+fi
+
+#Setting up editors
+export VISUAL=/usr/bin/vim
+export EDITOR=/usr/bin/vim
+
+# This file is sourced by bash for login shells.  The following line
+# runs your .bashrc and is recommended by the bash info pages.
+[[ -f ~/.bashrc ]] && . ~/.bashrc
+if [[ $SHLVL < 2 ]]; then
+	./scripts/screenr
+	logout
+fi
+
