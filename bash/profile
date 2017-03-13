@@ -25,7 +25,9 @@ export EDITOR=/usr/bin/vim
 # runs your .bashrc and is recommended by the bash info pages.
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 if [[ $SHLVL < 2 ]]; then
-	./scripts/screenr
-	logout
+  if [ -f .scripts/screenr ]; then
+  	./scripts/screenr
+  	logout
+  fi
 fi
 

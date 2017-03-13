@@ -32,6 +32,9 @@ function update-env-forwarding
 {
     SCREEN_DISPLAY=~/.screen/.display
     SCREEN_SSH_AUTH_SOCK=~/.screen/.ssh_auth_sock
+    if [ ! -d "~/.screen" ]; then
+      mkdir -p ~/.screen
+    fi
     if [ -z "$STY" -a -z "$TMUX" ]; then
         echo $DISPLAY > $SCREEN_DISPLAY
 	echo $SSH_AUTH_SOCK > $SCREEN_SSH_AUTH_SOCK
