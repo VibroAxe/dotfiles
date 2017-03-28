@@ -52,9 +52,9 @@ set mouse=a       "Enable mouse support and marvel at the ability to click aroun
 vmap <C-C> y      "Ctrl_C to yank (Copy)
 vmap <C-V> p      "Ctrl_V to paste
 
-set expandtab     " Soft tabs all the things
-set tabstop=2     " 2 spaces is used almost everywhere now
-set shiftwidth=2  " When using >> then use 2 spaces
+set noexpandtab     " Soft tabs all the things
+set tabstop=4     " 2 spaces is used almost everywhere now
+set shiftwidth=4  " When using >> then use 2 spaces
 set autoindent    " Well, obviously
 set smartindent   " As opposed to dumb indent
 
