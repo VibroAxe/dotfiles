@@ -14,6 +14,7 @@ sudo apt-get install sudo tmux git vim
 git config --global user.name "VibroAxe"
 git config --global user.email "vibs@macrolevel.co.uk"
 git config --global branch.*branch-name*.rebase true # Force existing branches to use rebase.
+git config --global push.default simple
 
 #Clone dotfiles and install
 git clone git@github.com:VibroAxe/dotfiles.git ~/.dotfiles
