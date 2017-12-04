@@ -94,5 +94,7 @@ fi
 
 
 # Put your fun stuff here.
+alias apt='sudo apt'
+alias tmux='tmux-next'
 alias apt-get='sudo apt-get'
 alias systemctl='sudo systemctl'

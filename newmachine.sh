@@ -6,9 +6,13 @@ scp -r vibs@core.tnnt.co.uk:.ssh/ ~/
 cp ~/.ssh/id_rsa.pub ~/.ssh/authorized_keys
 rm ~/.ssh/known_hosts
 
-# Assume debian/ubuntu
-sudo apt-get install sudo tmux git vim
-
+# Assume debian/ubuntu and install tmux-next
+sudo apt-get install sudo git vim
+sudo apt-get update -yqqu
+sudo add-apt-repository -yu ppa:pi-rho/dev
+sudo apt-get update -yqqu
+sudo apt-get install -yqqu python-software-properties software-properties-common
+sudo apt-get install -yqq tmux-next
 
 #Setup git
 git config --global user.name "VibroAxe"
