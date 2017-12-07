@@ -5,20 +5,20 @@ cd ~
 rm ~/.profile
 rm ~/.bashrc
 rm ~/.dir_colors
-ln -s ~/.dotfiles/bash/profile ~/.profile
-ln -s ~/.dotfiles/bash/dir_colors ~/.dir_colors
-ln -s ~/.dotfiles/bash/bashrc ~/.bashrc
+ln -s ~/.config/bash/profile ~/.profile
+ln -s ~/.config/bash/dir_colors ~/.dir_colors
+ln -s ~/.config/bash/bashrc ~/.bashrc
 
 #Dotvim
 cd ~
 rm ~/.vimrc
 rm -r ~/.vim
-ln -s ~/.dotfiles/vim ~/.vim
-ln -s ~/.dotfiles/vim/vimrc ~/.vimrc
+ln -s ~/.config/vim ~/.vim
+ln -s ~/.config/vim/vimrc ~/.vimrc
 git clone http://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 vim +PluginInstall +qall
 
 #Tmux
 cd ~
 rm ~/.tmux.conf
-ln -s ~/.dotfiles/tmux/tmux.conf ~/.tmux.conf
+ln -s ~/.config/tmux/tmux.conf ~/.tmux.conf
