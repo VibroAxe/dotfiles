@@ -95,6 +95,6 @@ fi
 
 # Put your fun stuff here.
 alias apt='sudo apt'
-alias tmux='tmux-next'
+which tmux-next 2>/dev/null >/dev/null && alias tmux='tmux-next -2' || alias tmux="tmux -2"
 alias apt-get='sudo apt-get'
 alias systemctl='sudo systemctl'
