@@ -24,4 +24,7 @@ rm ~/.tmux.conf
 ln -s ~/.config/tmux/tmux.conf ~/.tmux.conf
 
 #ssh
+#override ssh config checkout
+chmod 600 ~/.config/ssh/config
+#link files
 ln -s ~/.config/ssh/config ~/.ssh/config
