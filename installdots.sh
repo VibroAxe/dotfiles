@@ -22,3 +22,6 @@ vim +PluginInstall +qall
 cd ~
 rm ~/.tmux.conf
 ln -s ~/.config/tmux/tmux.conf ~/.tmux.conf
+
+#ssh
+ln -s ~/.config/ssh/config ~/.ssh/config

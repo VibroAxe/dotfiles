@@ -1,0 +1,18 @@
+Host *
+    HashKnownHosts no
+
+host virt-*
+	user root
+host lancache
+	user root
+
+host smarthome.tnnt.co.uk
+  HostName smarthome.tnnt.co.uk
+  ProxyCommand  ssh core.tnnt.co.uk netcat -w 120 %h %p
+
+host lanager.tnnt.co.uk
+  HostName lanager.tnnt.co.uk
+  ProxyCommand   ssh core.tnnt.co.uk netcat -w 120 %h %p
+
+Host *+*
+  ProxyCommand ssh $(echo %h | sed 's/+[^+]*$//;s/\([^+%%]*\)%%\([^+]*\)$/\2 -l \1/;s/:/ -p /') exec nc -w1 $(echo %h | sed 's/^.*+//;/:/!s/$/ %p/;s/:/ /')
