@@ -9,6 +9,9 @@ ln -s ~/.config/bash/profile ~/.profile
 ln -s ~/.config/bash/dir_colors ~/.dir_colors
 ln -s ~/.config/bash/bashrc ~/.bashrc
 
+#liquid prompt
+git clone https://github.com/nojhan/liquidprompt.git ~/.config/liquidprompt/liquidprompt
+
 #Dotvim
 cd ~
 rm ~/.vimrc
