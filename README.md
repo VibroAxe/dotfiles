@@ -17,7 +17,7 @@ My .Config folder
 ## Editing
 If creating a new dotfile, don't forget to add the ln -s into ~/.config/installdots.sh
 
-##Extra info
+## Extra info
 
 ### bash
 * ssh overridden with function to provide hostname information to tmux if available
