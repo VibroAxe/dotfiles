@@ -1,6 +1,6 @@
 #!/bin/bash
 
-function git_clone_or_update() {
+function git_clone_or_pull() {
 	repo=$1
 	targetdir=$2
 	if [ $# -lt 1 ]; then
@@ -62,12 +62,21 @@ update_link ~/.config/bash/dir_colors ~/.dir_colors
 update_link ~/.config/bash/bashrc ~/.bashrc
 
 #liquid prompt
-git_clone_or_update https://github.com/nojhan/liquidprompt.git ~/.config/liquidprompt/liquidprompt
+which acpi
+if [ $? -eq 1 ]; then
+	read -p "Couldn't find acpi command, install? [Yn]" choice
+	choice=${choice:-y}
+	choice=`echo "$choice" | tr '[:upper:]' '[:lower:]'`
+	if [[ $choice == "y" ]]; then
+		sudo apt install acpi -y
+	fi
+fi
+git_clone_or_pull https://github.com/nojhan/liquidprompt.git ~/.config/liquidprompt/liquidprompt
 
 #Dotvim
 update_link ~/.config/vim ~/.vim
 update_link ~/.config/vim/vimrc ~/.vimrc
-git_clone_or_update http://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+git_clone_or_pull http://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 vim +PluginInstall +qall
 
 #Tmux
