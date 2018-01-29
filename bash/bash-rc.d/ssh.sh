@@ -32,7 +32,9 @@ ssh() {
 
 ssh_connect() {
 	if [ "$(ssh-add -l)" == "The agent has no identities." ]; then
-   	 ssh-add
+   		ssh-add
+		usb_keys=`find /mnt/ -maxdepth 3 -name "id_[a-z,0-9]*" -not -name "id_*.pub"`
+		ssh-add $usb_keys
 	fi
 	command ssh -A "$@"
 }
