@@ -1,19 +1,28 @@
 #!/bin/bash
 
+SSH_AUTH_SOCK_FILE=~/.ssh/ssh_auth_sock;
 
 # ssh-agent configuration
 if [ -z ${SSH_AUTH_SOCK+x} ]; then
 	#SSH_AUTH_SOCK is unset
+	export SSH_AUTH_SOCK=$SSH_AUTH_SOCK_FILE;
 	if [ -z "$(pgrep ssh-agent)" ]; then
-		#rm -rf /tmp/ssh-*
-		eval $(ssh-agent -s) > /dev/null
+		#cleanup sockets
+		rm -rf /tmp/ssh-* 2> /dev/null
+		eval $(ssh-agent -a $SSH_AUTH_SOCK -s) > /dev/null
 	else
 		export SSH_AGENT_PID=$(pgrep ssh-agent)
-		export SSH_AUTH_SOCK=$(find /tmp/ssh-* -name agent.$SSH_AGENT_PID)
+		#export SSH_AUTH_SOCK=$(find /tmp/ssh-* -name agent.$SSH_AGENT_PID)
 	fi
 else
 	#Using existing SSH_AUTH_SOCK (probably from ssh)
-	:
+	echo $SSH_AUTH_SOCK
+	if [ "$SSH_AUTH_SOCK" != "$SSH_AUTH_SOCK_FILE" ]; then
+		if [[ -S "$SSH_AUTH_SOCK" && ! -h "$SSH_AUTH_SOCK" ]]; then
+		    ln -sf "$SSH_AUTH_SOCK" $SSH_AUTH_SOCK_FILE;
+		fi
+		export SSH_AUTH_SOCK=$SSH_AUTH_SOCK_FILE;
+	fi
 fi
 
 ssh() {
@@ -31,10 +40,14 @@ ssh() {
 }
 
 ssh_connect() {
+	load
+	command ssh -A "$@"
+}
+
+load() {
 	if [ "$(ssh-add -l)" == "The agent has no identities." ]; then
    		ssh-add
 		usb_keys=`find /mnt/ -maxdepth 3 -name "id_[a-z,0-9]*" -not -name "id_*.pub"`
 		ssh-add $usb_keys
 	fi
-	command ssh -A "$@"
 }

@@ -33,15 +33,13 @@ function update-env-forwarding
       mkdir -p ~/.screen
     fi
     if [ -z "$STY" -a -z "$TMUX" ]; then
-        echo $DISPLAY > $SCREEN_DISPLAY
-	echo $SSH_AUTH_SOCK > $SCREEN_SSH_AUTH_SOCK
+		if [ ! -z ${DISPLAY+x} ]; then
+	        echo $DISPLAY > $SCREEN_DISPLAY
+		fi
     else
-	if [ -f "$SCREEN_DISPLAY" ]; then
-        	export DISPLAY=`cat $SCREEN_DISPLAY`
-	fi
-	if [ -f "$SCREEN_SSH_AUTH_SOCK" ]; then
-		export SSH_AUTH_SOCK=`cat $SCREEN_SSH_AUTH_SOCK`
-	fi
+		if [ -f "$SCREEN_DISPLAY" ]; then
+   	     	export DISPLAY=`cat $SCREEN_DISPLAY`
+		fi
     fi
 }
 
