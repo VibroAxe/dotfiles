@@ -1,6 +1,13 @@
 #!/bin/bash
 
-SSH_AUTH_SOCK_FILE=~/.ssh/sock/${HOSTNAME}_ssh_auth_sock;
+create_agent() {
+	if [ -S $SSH_AUTH_SOCK_FILE ] || [ -L $SSH_AUTH_SOCK_FILE ] || [ -f $SSH_AUTH_SOCK_FILE ]; then
+		rm $SSH_AUTH_SOCK_FILE
+	fi
+	eval $(ssh-agent -a $SSH_AUTH_SOCK -s) > /dev/null
+}
+
+export SSH_AUTH_SOCK_FILE=~/.ssh/sock/${HOSTNAME}_ssh_auth_sock;
 if [ ! -d ~/.ssh/sock ]; then
 	mkdir -p ~/.ssh/sock
 fi
@@ -12,7 +19,7 @@ if [ -z ${SSH_AUTH_SOCK+x} ]; then
 	if [ -z "$(pgrep ssh-agent)" ]; then
 		#cleanup sockets
 		#rm -rf /tmp/ssh-* 2> /dev/null
-		eval $(ssh-agent -a $SSH_AUTH_SOCK -s) > /dev/null
+		create_agent
 	else
 		export SSH_AGENT_PID=$(pgrep ssh-agent)
 		#export SSH_AUTH_SOCK=$(find /tmp/ssh-* -name agent.$SSH_AGENT_PID)
@@ -27,6 +34,7 @@ else
 		export SSH_AUTH_SOCK=$SSH_AUTH_SOCK_FILE;
 	fi
 fi
+
 
 ssh() {
 
@@ -44,11 +52,16 @@ ssh() {
 
 ssh_connect() {
 	load
-	command ssh -A "$@"
+	command ssh "$@"
 }
 
 load() {
-	if [ "$(ssh-add -l)" == "The agent has no identities." ]; then
+	agent_response=`ssh-add -l 2>&1`;
+	if [ $? -eq 2 ] || [ "$agent_response" == "Error connecting to agent: No such file or directory" ]; then
+		create_agent
+		agent_response=`ssh-add -l`;
+	fi
+	if [ "$agent_response" == "The agent has no identities." ]; then
    		ssh-add
 		usb_keys=`find /mnt/ -maxdepth 3 -name "id_[a-z,0-9]*" -not -name "id_*.pub"`
 		ssh-add $usb_keys

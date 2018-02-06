@@ -1,16 +1,22 @@
 Host *
     HashKnownHosts no
+	ForwardAgent no
 
 host virt-*
 	user root
 host lancache
 	user root
 
-host core
-	ForwardAgent Yes
+host core core.tnnt.co.uk
+	ForwardAgent no
 
-host core.tnnt.co.uk
-	ForwardAgent Yes
+host web.macrolevel.co.uk www.macrolevel.co.uk web www
+	HostName www.macrolevel.co.uk
+	ForwardAgent yes
+
+host git.macrolevel.co.uk
+	HostName git.macrolevel.co.uk
+	ForwardAgent yes
 
 host smarthome.tnnt.co.uk
   ForwardAgent Yes
