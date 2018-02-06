@@ -6,13 +6,21 @@ host virt-*
 host lancache
 	user root
 
+host core
+	ForwardAgent Yes
+
+host core.tnnt.co.uk
+	ForwardAgent Yes
+
 host smarthome.tnnt.co.uk
+  ForwardAgent Yes
   HostName smarthome.tnnt.co.uk
-  ProxyCommand  ssh core.tnnt.co.uk netcat -w 120 %h %p
+  ProxyCommand ssh core.tnnt.co.uk netcat -w 120 %h %p
 
 host lanager.tnnt.co.uk
+  ForwardAgent Yes
   HostName lanager.tnnt.co.uk
-  ProxyCommand   ssh core.tnnt.co.uk netcat -w 120 %h %p
+  ProxyCommand ssh core.tnnt.co.uk netcat -w 120 %h %p
 
 Host *+*
   ProxyCommand ssh $(echo %h | sed 's/+[^+]*$//;s/\([^+%%]*\)%%\([^+]*\)$/\2 -l \1/;s/:/ -p /') exec nc -w1 $(echo %h | sed 's/^.*+//;/:/!s/$/ %p/;s/:/ /')
