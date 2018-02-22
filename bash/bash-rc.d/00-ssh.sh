@@ -51,11 +51,11 @@ ssh() {
 }
 
 ssh_connect() {
-	load
+	load-ssh-keys
 	command ssh "$@"
 }
 
-load() {
+load-ssh-keys() {
 	agent_response=`ssh-add -l 2>&1`;
 	if [ $? -eq 2 ] || [ "$agent_response" == "Error connecting to agent: No such file or directory" ]; then
 		create_agent

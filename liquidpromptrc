@@ -8,6 +8,8 @@
 source ~/.config/liquidprompt/vibs.theme
 #LP_PS1_FILE=~/.config/liquidprompt/nojhan.ps1
 
+LP_DEBUG_TIME=0
+
 #############
 # BEHAVIOUR #
 #############
