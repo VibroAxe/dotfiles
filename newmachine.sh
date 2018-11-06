@@ -1,10 +1,6 @@
 #!/bin/bash
 
 # attempt to grab ssh keys from core.tnnt
-echo "Attempting to grab ssh keys from tnnt"
-scp -r vibs@core.tnnt.co.uk:.ssh/ ~/
-cp ~/.ssh/id_rsa.pub ~/.ssh/authorized_keys
-rm ~/.ssh/known_hosts
 
 
 
