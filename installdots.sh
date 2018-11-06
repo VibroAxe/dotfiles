@@ -12,10 +12,12 @@ function git_clone_or_pull() {
 		echo targetdir
 	fi
 	if [ -d $targetdir ]; then
+		echo Updating $targetdir
 		pushd $targetdir
 		git pull
 		popd
 	else
+		echo Cloning $repo into $targetdir
 		git clone $repo $targetdir
 	fi
 }
