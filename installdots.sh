@@ -87,7 +87,9 @@ update_link ~/.config/tmux/tmux.conf ~/.tmux.conf
 #ssh
 #override ssh config checkout
 chmod 600 ~/.config/ssh/config
+chmod 600 ~/.config/ssh/config.local
+chmod 600 ~/.config/ssh/config.d/*
 #link files
-update_link ~/.config/ssh/config ~/.ssh/config
+update_link ~/.config/ssh ~/.ssh
 
 
