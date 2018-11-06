@@ -2,3 +2,5 @@ config.local
 known_hosts
 id_*
 authorized_keys
+sock
+sock/*

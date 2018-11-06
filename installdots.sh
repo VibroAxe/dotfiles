@@ -90,6 +90,8 @@ chmod 600 ~/.config/ssh/config
 chmod 600 ~/.config/ssh/config.local
 chmod 600 ~/.config/ssh/config.d/*
 #link files
+#mv to socket files if they exist
+mv ~/.ssh/sock ~/.config/ssh/
 update_link ~/.config/ssh ~/.ssh
 
 
