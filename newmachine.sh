@@ -59,11 +59,11 @@ git config --global branch.*branch-name*.rebase true # Force existing branches t
 git config --global push.default current
 
 #Clone dotfiles and install
-git clone git@github.com:VibroAxe/dotfiles.git ~/.config
+git clone git@gitlab.com:VibroAxe/dotfiles.git ~/.config
 
 #Clone scripts and install
-git clone git@github.com:VibroAxe/scripts.git ~/scripts
+git clone git@gitlab.com:VibroAxe/scripts.git ~/scripts
 
 #Finally install and link the dotfiles 
-.config/installdots.sh
+~/.config/installdots.sh
 
