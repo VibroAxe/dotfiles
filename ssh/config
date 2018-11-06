@@ -1,4 +1,6 @@
-IgnoreUnknown ProxyJump
+IgnoreUnknown ProxyJump,Include
+Include config.local
+Include config.d/*
 
 Host *
     HashKnownHosts no
