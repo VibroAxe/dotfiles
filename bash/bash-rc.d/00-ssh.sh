@@ -4,7 +4,14 @@ create_agent() {
 	if [ -S $SSH_AUTH_SOCK_FILE ] || [ -L $SSH_AUTH_SOCK_FILE ] || [ -f $SSH_AUTH_SOCK_FILE ]; then
 		rm $SSH_AUTH_SOCK_FILE
 	fi
-	eval $(ssh-agent -a $SSH_AUTH_SOCK -s) > /dev/null
+	if grep -qE "(Microsoft|WSL)" /proc/version &> /dev/null ; then
+		# Handle wsl weasel-pageant
+		eval $(/opt/weasel-pageant/weasel-pageant -a $SSH_AUTH_SOCK -r) > /dev/null
+		export SSH_AGENT_TYPE=weasel
+	else
+		export SSH_AGENT_TYPE=openssh
+		eval $(ssh-agent -a $SSH_AUTH_SOCK -s) > /dev/null
+	fi
 }
 
 export SSH_AUTH_SOCK_FILE=~/.ssh/sock/${HOSTNAME}_ssh_auth_sock;
@@ -57,13 +64,16 @@ ssh_connect() {
 
 load-ssh-keys() {
 	agent_response=`ssh-add -l 2>&1`;
-	if [ $? -eq 2 ] || [ "$agent_response" == "Error connecting to agent: No such file or directory" ]; then
+	if [ $? -eq 2 ] || [[ "$agent_response" == "Error connecting to agent: No such file or directory" ]]; then
 		create_agent
 		agent_response=`ssh-add -l`;
 	fi
-	if [ "$agent_response" == "The agent has no identities." ]; then
-   		ssh-add
-		usb_keys=`find /mnt/ -maxdepth 3 -name "id_[a-z,0-9]*" -not -name "id_*.pub"`
-		ssh-add $usb_keys
+	if [[ "$agent_response" == "The agent has no identities." ]]; then
+		if [[ "$SSH_AGENT_TYPE" == "openssh" ]]; then
+			#if weasel we can't add ssh keys?
+   			ssh-add
+			usb_keys=`find /mnt/ -maxdepth 3 -name "id_[a-z,0-9]*" -not -name "id_*.pub"`
+			ssh-add $usb_keys
+		fi
 	fi
 }

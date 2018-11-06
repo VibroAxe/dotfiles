@@ -1,14 +1,22 @@
+IgnoreUnknown ProxyJump
+
 Host *
     HashKnownHosts no
-	ForwardAgent no
+	ForwardAgent yes
+
+host genesis
+	user root
 
 host virt-*
 	user root
 host lancache
 	user root
+host genesis
+	user root
 
-host core core.tnnt.co.uk
-	ForwardAgent no
+host bastion bastion.tnnt.co.uk
+	HostName bastion.tnnt.co.uk
+	ForwardAgent yes
 	ControlMaster auto
 	ControlPersist 10m
 	Controlpath ~/.ssh/sock/ssh-%r@%h:%p.sock
@@ -21,18 +29,28 @@ host git.macrolevel.co.uk
 	HostName git.macrolevel.co.uk
 	ForwardAgent yes
 
-host smarthome.tnnt.co.uk
+host smarthome.tnnt.co.uk smarthome
   ForwardAgent Yes
   LocalForward 8080 localhost:8080
-  HostName smarthome.tnnt.co.uk
-  ProxyCommand ssh -W %h:%p core.tnnt.co.uk
+  LocalForward 8081 localhost:80
+  LocalForward 8443 localhost:443
+
+host *.tnnt.co.uk
+  ProxyJump bastion.tnnt.co.uk
+  ProxyCommand ssh -W %h:%p bastion.tnnt.co.uk
+
+host *.thesmarter.house
+  ForwardAgent Yes
+  LocalForward 8080 localhost:8080
+  LocalForward 8081 localhost:80
+  LocalForward 8443 localhost:443
+
+
 
 host lanager.tnnt.co.uk
   ForwardAgent Yes
   HostName lanager.tnnt.co.uk
-# this is the better way to do it but is not suppoorted in all places
-#  ProxyJump core.tnnt.co.uk
-  ProxyCommand ssh -W %h:%p core.tnnt.co.uk
 
 Host *+*
   ProxyCommand ssh $(echo %h | sed 's/+[^+]*$//;s/\([^+%%]*\)%%\([^+]*\)$/\2 -l \1/;s/:/ -p /') exec nc -w1 $(echo %h | sed 's/^.*+//;/:/!s/$/ %p/;s/:/ /')
+
