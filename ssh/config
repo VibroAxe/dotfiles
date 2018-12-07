@@ -5,6 +5,7 @@ Include config.d/*
 Host *
     HashKnownHosts no
 	ForwardAgent yes
+	ExitOnForwardFailure yes
 
 host genesis
 	user root
