@@ -1,9 +1,5 @@
 #!/bin/bash
 
-# attempt to grab ssh keys from core.tnnt
-
-
-
 if [ -f /etc/os-release ]; then
     # freedesktop.org and systemd
     . /etc/os-release

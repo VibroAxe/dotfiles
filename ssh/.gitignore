@@ -1,5 +1,6 @@
 config.local
 known_hosts
+known_hosts.old
 id_*
 authorized_keys
 sock

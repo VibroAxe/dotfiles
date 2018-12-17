@@ -94,7 +94,7 @@ fi
 which tmux-next 2>/dev/null >/dev/null && alias tmux='tmux-next -2' || alias tmux="tmux -2"
 
 #Load all commands in bash-rc.d
- for f in ~/.config/bash/bash-rc.d/*; do source $f; done
+for f in ~/.config/bash/bash-rc.d/*; do source $f; done
 
 alias apt='sudo apt'
 alias apt-get='sudo apt-get'
