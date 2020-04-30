@@ -1,0 +1,15 @@
+host virt01 virt02 virt03 virt04 virt*.pascall.local
+	user root
+
+host bastion bastion.pascall.local
+	HostName bastion.pascall.local
+	ForwardAgent yes
+	ControlMaster auto
+	ControlPersist 10m
+	Controlpath ~/.ssh/sock/ssh-%r@%h:%p.sock
+
+host *.pascall.local !bastion.pascall.local
+  ForwardAgent yes
+  ProxyJump bastion.pascall.local
+  ProxyCommand ssh -W %h:%p bastion.pascall.local
+
