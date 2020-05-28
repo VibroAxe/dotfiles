@@ -41,11 +41,15 @@ if [[ "$OS" == "Debian GNU/Linux" ]]; then
 	fi
 fi
 if [[ "$OS" == "Ubuntu" ]]; then 
-	sudo apt-get update -yqqu
-	sudo add-apt-repository -yu ppa:pi-rho/dev
-	sudo apt-get update -yqqu
-	sudo apt-get install -yqqu python-software-properties software-properties-common
-	sudo apt-get install -yqq tmux-next
+	if [[ "$VERSION" == "xenial/xerus" ]]; then
+		sudo apt-get update -yqqu
+		sudo add-apt-repository -yu ppa:pi-rho/dev
+		sudo apt-get update -yqqu
+		sudo apt-get install -yqqu python-software-properties software-properties-common
+		sudo apt-get install -yqq tmux-next
+	else
+		sudo apt-get install tmux
+	fi
 fi
 
 #Setup git

@@ -5,3 +5,4 @@ id_*
 authorized_keys
 sock
 sock/*
+wsl2-ssh-pageant.exe
