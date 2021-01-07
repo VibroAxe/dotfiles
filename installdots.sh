@@ -94,12 +94,3 @@ chmod 600 ~/.config/ssh/config.d/*
 mv ~/.ssh/sock ~/.config/ssh/
 update_link ~/.config/ssh ~/.ssh
 
-if grep -qE "(microsoft)" /proc/version &> /dev/null ; then
-	#WSL2, get pageant
-	wget https://github.com/BlackReloaded/wsl2-ssh-pageant/releases/download/v1.2.0/wsl2-ssh-pageant.exe -O ~/ssh/wsl2-ssh-pageant.exe
-	chmod +x ~/.ssh/wsl2-ssh-pageant.exe
-
-fi
-	OS=WSL
-	VER=1
-

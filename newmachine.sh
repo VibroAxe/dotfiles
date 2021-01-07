@@ -52,6 +52,15 @@ if [[ "$OS" == "Ubuntu" ]]; then
 	fi
 fi
 
+if grep -qE "(microsoft)" /proc/version &> /dev/null ; then
+	OS=WSL
+	VER=2
+	#WSL2, get pageant
+	wget https://github.com/BlackReloaded/wsl2-ssh-pageant/releases/download/v1.2.0/wsl2-ssh-pageant.exe -O ~/.ssh/wsl2-ssh-pageant.exe
+	chmod +x ~/.ssh/wsl2-ssh-pageant.exe
+fi
+
+
 #Setup git
 git config --global user.name "VibroAxe"
 git config --global user.email "vibs@macrolevel.co.uk"
