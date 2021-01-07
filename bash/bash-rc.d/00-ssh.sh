@@ -7,13 +7,14 @@ create_agent() {
 	if grep -qE "(Microsoft|WSL)" /proc/version &> /dev/null ; then
 		## WSL 1
 		# Handle wsl weasel-pageant
+		export SSH_AGENT_TYPE=wsl1
 		eval $(/opt/weasel-pageant/weasel-pageant -a $SSH_AUTH_SOCK -r) > /dev/null
 		export SSH_AGENT_TYPE=weasel
 	else
 		if grep -qE "(microsoft)" /proc/version &> /dev/null ; then
 			export SSH_AGENT_TYPE=wsl2
 			ss -a | grep -q $SSH_AUTH_SOCK
-			if [ $? -ne 0 ]; then
+			if [ $? -ne 0 ] || [ ! -f $SSH_AUTH_SOCK ]; then
 				rm -f $SSH_AUTH_SOCK
 				(setsid nohup socat UNIX-LISTEN:$SSH_AUTH_SOCK,fork EXEC:$HOME/.ssh/wsl2-ssh-pageant.exe >/dev/null 2>&1 &)
 			fi
