@@ -88,13 +88,20 @@ fi
 
 
 
-# Put your fun stuff here.
+####################################################
+# Put your fun stuff here.                         #
+####################################################
 
-#alias tmux-next to tmux if present
-which tmux-next 2>/dev/null >/dev/null && alias tmux='tmux-next -2' || alias tmux="tmux -2"
 
-#update the repo before doing anything else
+####################################################
+#update the .config repo before doing anything else#
+####################################################
+
 pushd ~/.config > /dev/null
+
+err=0
+git update-index -q --ignore-submodules --refresh
+
 
 if ! git diff-files --quiet --ignore-submodules
     then
@@ -118,8 +125,15 @@ ping -q -w1 -c1 google.com &>/dev/null && git pull || echo >&2 "No network, coul
 
 popd > /dev/null
 
-#Load all commands in bash-rc.d
+####################################################
+# Load all commands in bash-rc.d                   #
+####################################################
+
 for f in ~/.config/bash/bash-rc.d/*; do source $f; done
+
+####################################################
+# Default Aliases                                  #
+####################################################
 
 alias apt='sudo apt'
 alias apt-get='sudo apt-get'

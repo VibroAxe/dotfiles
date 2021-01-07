@@ -1,4 +1,8 @@
 #!/bin/bash
+#alias tmux-next to tmux if present
+which tmux-next 2>/dev/null >/dev/null && alias tmux='tmux-next -2' || alias tmux="tmux -2"
+
+
 tmuxr() {
 
 	#if [ "$(ps -p $(ps -p $$ -o ppid=) -o comm=)" = "tmux" ]; then
@@ -21,3 +25,5 @@ ssh-tmux() {
 tmux-ssh() {
 	tmuxr $@
 }
+
+
