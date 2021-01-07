@@ -94,7 +94,7 @@ fi
 which tmux-next 2>/dev/null >/dev/null && alias tmux='tmux-next -2' || alias tmux="tmux -2"
 
 #update the repo before doing anything else
-git pull .config
+(cd ~/.config; git pull)
 
 #Load all commands in bash-rc.d
 for f in ~/.config/bash/bash-rc.d/*; do source $f; done
