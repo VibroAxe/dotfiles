@@ -1,5 +1,11 @@
 #!/bin/bash
 
+if [ "$BASH_VERSION" = '' ]; then
+	#This file doesn't work with dash, make sure we are running in bash as per the shebang
+	bash $0
+	return $?
+fi
+
 if [ -f /etc/os-release ]; then
     # freedesktop.org and systemd
     . /etc/os-release
@@ -47,13 +53,13 @@ if [[ ! "$(readlink -f $0)" == "$(readlink -f ~/.config)"* ]]; then
 fi
 
 # Assume debian/ubuntu and install tmux-next
-sudo apt-get install sudo vim
+sudo apt-get install -y sudo vim
 
 if [[ "$OS" == "Debian GNU/Linux" ]]; then
 	if [[ "$VERSION" == "8 (jessie)" ]]; then
-		sudo apt-get install -t jessie-backports tmux
+		sudo apt-get install -y -t jessie-backports tmux
 	elif [[ "$VERSION" == "9 (stretch)" ]]; then
-		sudo apt-get install -t stretch-backports tmux
+		sudo apt-get install -y -t stretch-backports tmux
 	fi
 fi
 if [[ "$OS" == "Ubuntu" ]]; then 
@@ -64,7 +70,7 @@ if [[ "$OS" == "Ubuntu" ]]; then
 		sudo apt-get install -yqqu python-software-properties software-properties-common
 		sudo apt-get install -yqq tmux-next
 	else
-		sudo apt-get install tmux
+		sudo apt-get install -y tmux
 	fi
 fi
 
