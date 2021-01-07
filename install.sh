@@ -53,7 +53,7 @@ if [[ ! "$(readlink -f $0)" == "$(readlink -f ~/.config)"* ]]; then
 fi
 
 # Assume debian/ubuntu and install tmux-next
-sudo apt-get install -y sudo vim
+sudo apt-get install -y sudo vim iputils-ping
 
 if [[ "$OS" == "Debian GNU/Linux" ]]; then
 	if [[ "$VERSION" == "8 (jessie)" ]]; then
