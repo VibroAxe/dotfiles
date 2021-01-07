@@ -94,7 +94,29 @@ fi
 which tmux-next 2>/dev/null >/dev/null && alias tmux='tmux-next -2' || alias tmux="tmux -2"
 
 #update the repo before doing anything else
-(cd ~/.config; git pull)
+pushd ~/.config > /dev/null
+
+if ! git diff-files --quiet --ignore-submodules
+    then
+        echo >&2 "You have unstaged changes in ~/.config"
+        err=1
+    fi
+
+if ! git diff-index --cached --quiet --ignore-submodules HEAD --
+    then
+        if [ $err = 0 ]
+        then
+            echo >&2 "Your have uncommitted changes in ~/.config"
+        else
+            echo >&2 "Additionally, your index contains uncommitted changes"
+        fi
+        err=1
+    fi
+
+
+ping -q -w1 -c1 google.com &>/dev/null && git pull || echo >&2 "No network, couldn't update .config"
+
+popd > /dev/null
 
 #Load all commands in bash-rc.d
 for f in ~/.config/bash/bash-rc.d/*; do source $f; done
