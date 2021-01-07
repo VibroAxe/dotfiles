@@ -87,10 +87,11 @@ update_link ~/.config/tmux/tmux.conf ~/.tmux.conf
 #ssh
 #override ssh config checkout
 chmod 600 ~/.config/ssh/config
-chmod 600 ~/.config/ssh/config.local
+[ -f ~/.config/ssh/config.local ] && chmod 600 ~/.config/ssh/config.local
 chmod 600 ~/.config/ssh/config.d/*
 #link files
 #mv to socket files if they exist
-mv ~/.ssh/sock ~/.config/ssh/
-update_link ~/.config/ssh ~/.ssh
+mkdir -p ~/.ssh
+update_link ~/.config/ssh/config.d ~/.ssh/config.d
+update_link ~/.config/ssh/config ~/.ssh/config
 
