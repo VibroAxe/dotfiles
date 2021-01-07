@@ -44,6 +44,6 @@ if [ $err -ne 0 ]
 		echo 
 	fi
 
-	([ $USER = "codespace" ] || ping -q -w1 -c1 google.com &>/dev/null) && git pull || echo -e >&2 "No network, couldn't update .config from github\n"
+	([ $USER = "codespace" ] || ping -q -w1 -c1 google.com &>/dev/null) && git pull --ff-only || echo -e >&2 "No network, couldn't update .config from github\n"
 
 popd > /dev/null
