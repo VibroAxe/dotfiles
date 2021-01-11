@@ -44,7 +44,7 @@ if [ -z ${SSH_AUTH_SOCK+x} ]; then
 	fi
 else
 	#Using existing SSH_AUTH_SOCK (probably from ssh)
-	echo $SSH_AUTH_SOCK_FILE
+	echo Remapping existing SSH_AUTH_SOCK to $SSH_AUTH_SOCK_FILE
 	if [ "$SSH_AUTH_SOCK" != "$SSH_AUTH_SOCK_FILE" ]; then
 		if [[ -S "$SSH_AUTH_SOCK" && ! -h "$SSH_AUTH_SOCK" ]]; then
 		    ln -sf "$SSH_AUTH_SOCK" $SSH_AUTH_SOCK_FILE;
