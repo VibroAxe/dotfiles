@@ -95,4 +95,3 @@ chmod 600 ~/.config/ssh/config.d/*
 #mv to socket files if they exist
 update_link ~/.config/ssh/config.d ~/.ssh/config.d
 update_link ~/.config/ssh/config ~/.ssh/config
-
