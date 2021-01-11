@@ -50,11 +50,13 @@ if ([ $USER = "codespace" ] || ping -q -w1 -c1 google.com &>/dev/null); then
 	if [ $RET -eq 0 ]; then
 		echo "Dotfiles have been updated, reinstalling dots"
 		yes "n" | ~/.config/installdots.sh
+		echo "Updated and installed dotfiles"
 		echo "If prerequesites have changed, you may need to run ~/.config/install.sh"
-		echo "Done"
+	else 
+		echo "No update to dotfiles"
 	fi
 else
-	echo -e >&2 "No network, couldn't update .config from github\n"
+	echo -e >&2 "No network, couldn't update dotfiles from github\n"
 fi
 
 popd > /dev/null
