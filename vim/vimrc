@@ -12,8 +12,10 @@ call vundle#begin()"
 " let Vundle manage Vundle, required
 Bundle 'gmarik/Vundle.vim'
 Bundle 'gmarik/sudo-gui.vim'
-Bundle 'vim-airline/vim-airline'
-Bundle 'vim-airline/vim-airline-themes'
+"Bundle 'vim-airline/vim-airline'
+"Bundle 'vim-airline/vim-airline-themes'
+Bundle 'itchyny/lightline.vim'
+Bundle 'itchyny/vim-gitbranch'
 Bundle 'nanotech/jellybeans.vim'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'nathanaelkane/vim-indent-guides'
@@ -81,7 +83,7 @@ set encoding=utf8 " Really, people still use ASCII
 
 syntax enable
 set background=dark
-"colorscheme jellybeans
+colorscheme jellybeans
 "set ofu=syntaxcomplete#Complete
 
 " Better Completion
@@ -115,3 +117,19 @@ let g:syntastic_auto_loc_list=1
 
 let g:syntastic_puppet_puppetlint_args = '--no-80chars-check --no-class_inherits_from_params_class-check --no-only_variable_string'
 
+
+" ---------------
+" Lightline
+" ---------------
+set laststatus=2
+set noshowmode
+let g:lightline = {
+	  \ 'colorscheme': 'one', 
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'gitbranch#name'
+      \ },
+      \ }
