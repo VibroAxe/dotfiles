@@ -85,13 +85,14 @@ tmux new-session -d -s vundle 'vim +PluginInstall +qall'
 update_link ~/.config/tmux/tmux.conf ~/.tmux.conf
 
 #ssh
+#Check .ssh exists
+mkdir -p ~/.ssh
 #override ssh config checkout
 chmod 600 ~/.config/ssh/config
 [ -f ~/.config/ssh/config.local ] && chmod 600 ~/.config/ssh/config.local
 chmod 600 ~/.config/ssh/config.d/*
 #link files
 #mv to socket files if they exist
-mkdir -p ~/.ssh
 update_link ~/.config/ssh/config.d ~/.ssh/config.d
 update_link ~/.config/ssh/config ~/.ssh/config
 

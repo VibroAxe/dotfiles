@@ -44,6 +44,16 @@ if [ $err -ne 0 ]
 		echo 
 	fi
 
-	([ $USER = "codespace" ] || ping -q -w1 -c1 google.com &>/dev/null) && git pull --ff-only || echo -e >&2 "No network, couldn't update .config from github\n"
+if ([ $USER = "codespace" ] || ping -q -w1 -c1 google.com &>/dev/null); then
+	git pull --ff-only
+	RET=$?
+	if [ $RET -eq 1 ]; then
+		echo "Updated dotfiles, reinstalling dots"
+		yes "n" | ~/.config/installdots.sh
+		echo "If prerequesites have changed, you may need to run ~/.config/install.sh"
+	fi
+else
+	echo -e >&2 "No network, couldn't update .config from github\n"
+fi
 
 popd > /dev/null
