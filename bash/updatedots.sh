@@ -45,12 +45,13 @@ if [ $err -ne 0 ]
 	fi
 
 if ([ $USER = "codespace" ] || ping -q -w1 -c1 google.com &>/dev/null); then
-	git pull --ff-only
+	git pull --ff-only | grep "Fast-forward"
 	RET=$?
-	if [ $RET -eq 1 ]; then
-		echo "Updated dotfiles, reinstalling dots"
+	if [ $RET -eq 0 ]; then
+		echo "Dotfiles have been updated, reinstalling dots"
 		yes "n" | ~/.config/installdots.sh
 		echo "If prerequesites have changed, you may need to run ~/.config/install.sh"
+		echo "Done"
 	fi
 else
 	echo -e >&2 "No network, couldn't update .config from github\n"
