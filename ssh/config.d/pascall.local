@@ -1,4 +1,4 @@
-host virt01 virt02 virt03 virt04 virt*.pascall.local prod-virt*
+host virt01 virt02 virt03 virt04 virt*.pascall.local prod-virt* lab-virt*
 	user root
 
 host bastion bastion.pascall.local
