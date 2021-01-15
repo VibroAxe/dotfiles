@@ -83,7 +83,7 @@ set encoding=utf8 " Really, people still use ASCII
 
 syntax enable
 set background=dark
-colorscheme jellybeans
+silent! colorscheme jellybeans
 "set ofu=syntaxcomplete#Complete
 
 " Better Completion
