@@ -4,13 +4,6 @@ create_agent() {
 	if [ -S $SSH_AUTH_SOCK_FILE ] || [ -L $SSH_AUTH_SOCK_FILE ] || [ -f $SSH_AUTH_SOCK_FILE ]; then
 		rm $SSH_AUTH_SOCK_FILE
 	fi
-	if grep -qE "(Microsoft|WSL)" /proc/version &> /dev/null ; then
-		## WSL 1
-		# Handle wsl weasel-pageant
-		export SSH_AGENT_TYPE=wsl1
-		eval $(/opt/weasel-pageant/weasel-pageant -a $SSH_AUTH_SOCK -r) > /dev/null
-		export SSH_AGENT_TYPE=weasel
-	else
 		if grep -qE "(microsoft)" /proc/version &> /dev/null ; then
 			export SSH_AGENT_TYPE=wsl2
 			ss -a | grep -q $SSH_AUTH_SOCK
@@ -22,7 +15,6 @@ create_agent() {
 			export SSH_AGENT_TYPE=openssh
 			eval $(ssh-agent -a $SSH_AUTH_SOCK -s) > /dev/null
 		fi
-	fi
 }
 
 export SSH_AUTH_SOCK_FILE=~/.ssh/sock/${HOSTNAME}_ssh_auth_sock;
