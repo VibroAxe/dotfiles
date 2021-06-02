@@ -55,8 +55,8 @@ vmap <C-C> y      "Ctrl_C to yank (Copy)
 vmap <C-V> p      "Ctrl_V to paste
 
 set noexpandtab     " Soft tabs all the things
-set tabstop=4     " 2 spaces is used almost everywhere now
-set shiftwidth=4  " When using >> then use 2 spaces
+set tabstop=2     " 2 spaces is used almost everywhere now
+set shiftwidth=2  " When using >> then use 2 spaces
 set autoindent    " Well, obviously
 set smartindent   " As opposed to dumb indent
 
@@ -69,17 +69,18 @@ set nocompatible  " Actually make this vim
 set ttyfast       " We don't use 33.6 modems these days
 set ruler
 
+set esckeys       " Allow escape key in insert mode
+"set cursorline    " Highlight the line we're on
+set encoding=utf8 " Really, people still use ASCII
+
 set incsearch     " Use incremental search like OMG yes
 set ignorecase    " Ignore case when searching
 set hlsearch      " Highlight searching
 set showmatch     " Show me where things match
 set diffopt=filler,iwhite "Nice diff options
-set showbreak=↪   " Cooler linebreak
+silent! set showbreak=↪   " Cooler linebreak, silent incase we don't have utf8
 set noswapfile    " It's 2014, GO AWAY FFS
 
-set esckeys       " Allow escape key in insert mode
-"set cursorline    " Highlight the line we're on
-set encoding=utf8 " Really, people still use ASCII
 
 syntax enable
 set background=dark
