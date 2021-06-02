@@ -100,7 +100,7 @@ fi
 ~/.config/bash/updatedots.sh
 
 ####################################################
-# Load all commands in bash-rc.d                   #
+# Load all commands in bashrc.d                   #
 ####################################################
 
 for f in ~/.config/bash/bashrc.d/*; do source $f; done
