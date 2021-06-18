@@ -68,7 +68,7 @@ LP_PERCENTS_ALWAYS=0
 # Use the permissions feature and display a red ':' before the prompt to show
 # when you don't have write permission to the current directory.
 # Recommended value is 1
-LP_ENABLE_PERM=0
+LP_ENABLE_PERM=1
 
 # Enable the proxy detection feature.
 # Recommended value is 1
@@ -158,7 +158,7 @@ LP_ENABLE_TITLE=0
 LP_ENABLE_SCREEN_TITLE=0
 
 # Use different colors for the different hosts you SSH to
-LP_ENABLE_SSH_COLORS=0
+LP_ENABLE_SSH_COLORS=1
 
 # Specify a list of complete and colon (":") separated paths in which, all vcs
 # will be disabled
