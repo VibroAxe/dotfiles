@@ -120,3 +120,11 @@ alias svi='sudoedit'
 ####################################################
 
 [[ -f ~/.config/bash/local ]] && source ~/.config/bash/local
+
+
+####################################################
+# Start tmux if $START_TMUX is set in bash/local   #
+####################################################
+
+#Start TMUX 
+[[ "$TERM" =~ "screen".* ]] || ( [[ -n "${START_TMUX}" ]] && echo "Autostarting Tmux" && tmuxr && echo "Logging out" && exit )
