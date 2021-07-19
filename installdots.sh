@@ -58,6 +58,9 @@ function update_link() {
 
 cd ~
 
+# Fix any regressions
+[[ -f ~/.config/bash/bashrc.d/local ]] && echo "Moving bashrc.d/local to new home" && mv ~/.config/bash/bashrc.d/local ~/.config/bash/local
+
 #Bash files
 update_link ~/.config/bash/profile ~/.profile
 update_link ~/.config/bash/dir_colors ~/.dir_colors
