@@ -16,7 +16,7 @@ tmuxr() {
 			tmux source-file ~/.config/tmux/tmux-leaveremote-commands.conf
 			tmux set-window-option automatic-rename "on" 1>/dev/null
 		else
-			ssh_connect "$@" -t -C "bash -c \"tmux a || tmux\""
+			ssh_connect "$@" -t "bash -l -c \"tmux a || tmux\""
 		fi
 	fi
 
