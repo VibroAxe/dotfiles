@@ -127,5 +127,5 @@ alias svi='sudoedit'
 ####################################################
 
 #Start TMUX 
-[[ "$TERM" =~ "screen".* ]] || [[ -n "${START_TMUX}" ]] && echo "Autostarting Tmux" && tmuxr
+[[ -n "${START_TMUX}" ]] && [[ ! "$TERM" =~ "screen".* ]] && echo "Autostarting Tmux" && tmuxr
 
