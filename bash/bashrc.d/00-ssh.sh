@@ -42,6 +42,7 @@ else
 		    ln -sf "$SSH_AUTH_SOCK" $SSH_AUTH_SOCK_FILE;
 		fi
 		export SSH_AUTH_SOCK=$SSH_AUTH_SOCK_FILE;
+		export SSH_AGENT_TYPE=remote
 	fi
 fi
 
@@ -66,15 +67,18 @@ ssh_connect() {
 }
 
 load-ssh-keys() {
-	agent_response=`ssh-add -l 2>&1`;
+	agent_response=`timeout 1s ssh-add -l 2>&1`;
 	if [ $? -eq 2 ] || [[ "$agent_response" == "Error connecting to agent: No such file or directory" ]]; then
 		create_agent
-		agent_response=`ssh-add -l`;
+		if [[ "$SSH_AGENT_TYPE" == "openssh" ]]; then
+			#We can only add ssh keys on local ssh agents so ignore if on wsl
+			agent_response=`ssh-add -l 2>&1`;
+		fi
 	fi
 	if [[ "$agent_response" == "The agent has no identities." ]]; then
 		if [[ "$SSH_AGENT_TYPE" == "openssh" ]]; then
-			#if weasel we can't add ssh keys?
-   			ssh-add
+			#We can only add ssh keys on local ssh agents
+   		ssh-add
 			usb_keys=`find /mnt/ -maxdepth 3 -name "id_[a-z,0-9]*" -not -name "id_*.pub"`
 			ssh-add $usb_keys
 		fi
