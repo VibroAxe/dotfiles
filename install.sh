@@ -44,7 +44,7 @@ if [[ ! "$(readlink -f $0)" == "$(readlink -f ~/.config)"* ]]; then
 		confmove=1
 		mv ~/.config ~/.config2
 	fi
-	ln -s dotfiles ~/.config
+	ln -s $(readlink -f $) ~/.config
 	if [ $confmove ]; then
 		echo "Importing legacy .config"
 		mv ~/.config2/* ~/.config/
