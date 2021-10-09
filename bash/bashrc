@@ -114,6 +114,7 @@ alias apt-get='sudo apt-get'
 alias systemctl='sudo systemctl'
 alias service='sudo service'
 alias svi='sudoedit'
+alias reboot='sudo reboot'
 
 ####################################################
 # Load the bash.local if it exists                 #
