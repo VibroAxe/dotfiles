@@ -7,7 +7,9 @@ create_agent() {
 		if grep -qE "(microsoft)" /proc/version &> /dev/null ; then
 			export SSH_AGENT_TYPE=wsl2
 			ss -a | grep -q $SSH_AUTH_SOCK
+			echo "Status: $?"
 			if [ $? -ne 0 ] || [ ! -f $SSH_AUTH_SOCK ]; then
+				echo creating new socat
 				rm -f $SSH_AUTH_SOCK
 				(setsid nohup socat UNIX-LISTEN:$SSH_AUTH_SOCK,fork EXEC:$HOME/.ssh/wsl2-ssh-pageant.exe >/dev/null 2>&1 &)
 			fi
@@ -68,7 +70,7 @@ ssh_connect() {
 
 load-ssh-keys() {
 	agent_response=`timeout 1s ssh-add -l 2>&1`;
-	if [ $? -eq 2 ] || [[ "$agent_response" == "Error connecting to agent: No such file or directory" ]]; then
+	if [ $? -eq 2 ] && [[ "$agent_response" == "Error connecting to agent: No such file or directory" ]]; then
 		create_agent
 		if [[ "$SSH_AGENT_TYPE" == "openssh" ]]; then
 			#We can only add ssh keys on local ssh agents so ignore if on wsl
