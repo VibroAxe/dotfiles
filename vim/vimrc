@@ -90,6 +90,12 @@ silent! colorscheme jellybeans
 " Better Completion
 set completeopt=longest,menuone,preview
 
+" Ctrl+left/right
+execute "set <xUp>=\e[1;*A"
+execute "set <xDown>=\e[1;*B"
+execute "set <xRight>=\e[1;*C"
+execute "set <xLeft>=\e[1;*D"
+
 "Enable new file templating system
 autocmd BufNewFile * :silent! exec ":0r ".$VIMHOME."templates/".&ft
 
