@@ -1,0 +1,9 @@
+host thegarrison.eu www.thegarrion.eu
+	HostName thegarrison.eu
+	ForwardAgent yes
+	ControlMaster auto
+	ControlPersist 10m
+	Controlpath ~/.ssh/sock/ssh-%r@%h:%p.sock
+
+
+

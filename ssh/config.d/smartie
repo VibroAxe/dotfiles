@@ -1,0 +1,14 @@
+host smartie.thegarrison.eu
+	HostName localhost
+	ForwardAgent yes
+	User pi
+	Port 2223
+  ProxyJump vibs@www.thegarrison.eu
+  ProxyCommand ssh -W %h:%p vibs@www.thegarriso.eu
+	ControlMaster auto
+	ControlPersist 10m
+	Controlpath ~/.ssh/sock/ssh-%r@%h:%p.sock
+	LocalForward 5900 localhost:5900
+	LocalForward 8080 localhost:80
+
+
