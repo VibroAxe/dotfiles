@@ -85,6 +85,7 @@ git_clone_or_pull http://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundl
 tmux new-session -d -s vundle 'vim +PluginInstall +qall'
 
 #Tmux
+update_link ~/.config/tmuxp ~/.tmuxp
 update_link ~/.config/tmux/tmux.conf ~/.tmux.conf
 
 #ssh

@@ -9,8 +9,6 @@ Host *
 
 host virt-*
 	user root
-host lancache
-	user root
 
 host web.macrolevel.co.uk www.macrolevel.co.uk web www
 	HostName www.macrolevel.co.uk

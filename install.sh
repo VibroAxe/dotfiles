@@ -53,7 +53,7 @@ if [[ ! "$(readlink -f $0)" == "$(readlink -f ~/.config)"* ]]; then
 fi
 
 # Assume debian/ubuntu and install tmux-next
-sudo apt-get install -y sudo vim
+sudo apt-get install -y sudo vim pip
 
 if [[ "$OS" == "Debian GNU/Linux" ]]; then
 	if [[ "$VERSION" == "8 (jessie)" ]]; then
@@ -84,6 +84,7 @@ if grep -qE "(microsoft)" /proc/version &> /dev/null ; then
 	chmod +x ~/.ssh/wsl2-ssh-pageant.exe
 fi
 
+pip install --user tmuxp
 
 #Setup git
 git config --global user.name "VibroAxe"

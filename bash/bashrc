@@ -86,7 +86,9 @@ if [ "$TERM" != "dumb" ]; then
     alias vdir='ls --color=auto --format=long'
 fi
 
-
+#add pip local to path
+PATH="$PATH:/home/users/vibs/.local/bin"
+export PATH
 
 ####################################################
 # Put your fun stuff here.                         #
