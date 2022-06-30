@@ -3,16 +3,14 @@ Include config.local
 Include config.d/*
 
 Host *
-    HashKnownHosts no
+  HashKnownHosts no
 	ForwardAgent no
 	ExitOnForwardFailure yes
+  ServerAliveInterval 300
+	ServerAliveCountMax 3
 
 host virt-*
 	user root
-
-host web.macrolevel.co.uk www.macrolevel.co.uk web www
-	HostName www.macrolevel.co.uk
-	ForwardAgent yes
 
 host *.thesmarter.house
   ForwardAgent Yes
