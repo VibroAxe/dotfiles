@@ -1,0 +1,21 @@
+Host bastion.event.liab
+	ProxyJump vibs@bastion.liab.org.uk
+	Hostname localhost
+	Port 2222
+	ForwardAgent true
+  DynamicForward localhost:9080
+
+Host *.event.liab !bastion.event.liab
+  ForwardAgent yes
+  ProxyJump bastion.event.liab
+  ProxyCommand ssh -W %h:%p bastion.event.liab
+
+
+Host bastion.liab.org.uk
+	ControlMaster true
+	Hostname bastion.liab.org.uk
+	User vibs
+
+Host specbastion
+	Hostname bastion.liab.org.uk
+

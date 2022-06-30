@@ -1,7 +1,7 @@
 host genesis
 	user root
 
-host bastion bastion.tnnt.co.uk
+host bastion.tnnt.co.uk
 	HostName bastion.tnnt.co.uk
 	ForwardAgent yes
 	ControlMaster auto
