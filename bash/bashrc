@@ -87,7 +87,7 @@ if [ "$TERM" != "dumb" ]; then
 fi
 
 #add pip local to path
-PATH="$PATH:/home/users/vibs/.local/bin"
+PATH="$PATH:~/.local/bin"
 export PATH
 
 ####################################################
