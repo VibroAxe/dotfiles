@@ -1,0 +1,39 @@
+session_name: 'stratlan'
+windows:
+- focus: 'true'
+  layout: c05d,236x54,0,0,0
+  options: 
+    automatic-rename: 'on'
+  panes:
+  - focus: 'true'
+    shell_command: bash
+  start_directory: /home/users/vibs/.config
+  window_name: bash
+- layout: 149b,236x54,0,0{118x54,0,0[118x47,0,0,1,118x6,0,48,5],117x54,119,0[117x17,119,0,2,117x18,119,18,3,117x17,119,37,4]}
+  options:
+    automatic-rename: 'off'
+  panes:
+  - focus: 'true'
+    shell_command: ssh lancache 'tail -f /cache/logs/access.log | grep -v MISS | ccze -CA'
+  - shell_command: ssh lancache 'tail -f /cache/logs/access.log | grep MISS | ccze -CA'
+  - ssh squid01
+  - ssh squid02
+  - ssh squid03
+  start_directory: /home/users/vibs
+  window_name: cache
+- layout: vertical
+  options:
+    automatic-rename: 'off'
+  panes:
+  - focus: 'true'
+    ssh dns01
+  - ssh dns02
+  window_name: 'dns'
+- layout: c064,236x54,0,0,7
+  options:
+    automatic-rename: 'on'
+  panes:
+  - focus: 'true'
+    shell_command: bash
+  start_directory: /home/users/vibs/.config
+  window_name: bash
