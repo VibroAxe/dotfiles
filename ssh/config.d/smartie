@@ -7,9 +7,8 @@ host smartie.thegarrison.eu
   ProxyCommand ssh -W %h:%p vibs@www.thegarriso.eu
 	ControlMaster auto
 	ControlPersist 10m
-	Controlpath ~/.ssh/sock/ssh-%r@%h:%p.sock
+	Controlpath ~/.ssh/sock/ssh-%r@smartie.thegarrison.eu:%p.sock
 	LocalForward 5900 localhost:5900
-	LocalForward 5901 localhost:5901
 	LocalForward 8080 localhost:8080
 	LocalForward 6080 localhost:6080
 	LocalForward 3000 localhost:3000
@@ -24,13 +23,10 @@ host smartie.tnnt.co.uk
   ProxyCommand ssh -W %h:%p vibs@www.thegarriso.eu
 	ControlMaster auto
 	ControlPersist 10m
-	Controlpath ~/.ssh/sock/ssh-%r@%h:%p.sock
+	Controlpath ~/.ssh/sock/ssh-%r@smartie.tnnt.co.uk:%p.sock
 	LocalForward 5900 localhost:5900
-	LocalForward 5901 localhost:5901
 	LocalForward 8080 localhost:8080
 	LocalForward 6080 localhost:6080
 	LocalForward 3000 localhost:3000
   DynamicForward localhost:9080
-
-
 
