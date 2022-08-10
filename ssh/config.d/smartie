@@ -9,6 +9,28 @@ host smartie.thegarrison.eu
 	ControlPersist 10m
 	Controlpath ~/.ssh/sock/ssh-%r@%h:%p.sock
 	LocalForward 5900 localhost:5900
-	LocalForward 8080 localhost:80
+	LocalForward 5901 localhost:5901
+	LocalForward 8080 localhost:8080
+	LocalForward 6080 localhost:6080
+	LocalForward 3000 localhost:3000
+  DynamicForward localhost:9080
+
+host smartie.tnnt.co.uk
+	HostName localhost
+	ForwardAgent yes
+	User pi
+	Port 2223
+  ProxyJump vibs@bastion.tnnt.co.uk
+  ProxyCommand ssh -W %h:%p vibs@www.thegarriso.eu
+	ControlMaster auto
+	ControlPersist 10m
+	Controlpath ~/.ssh/sock/ssh-%r@%h:%p.sock
+	LocalForward 5900 localhost:5900
+	LocalForward 5901 localhost:5901
+	LocalForward 8080 localhost:8080
+	LocalForward 6080 localhost:6080
+	LocalForward 3000 localhost:3000
+  DynamicForward localhost:9080
+
 
 

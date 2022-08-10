@@ -19,7 +19,7 @@ host smarthome.tnnt.co.uk smarthome
   LocalForward 8443 localhost:443
   LocalForward 5000 localhost:5000
 
-host *.tnnt.co.uk !bastion.tnnt.co.uk
+host *.tnnt.co.uk !bastion.tnnt.co.uk !smartie.tnnt.co.uk
   ForwardAgent yes
   ProxyJump bastion.tnnt.co.uk
   ProxyCommand ssh -W %h:%p bastion.tnnt.co.uk
