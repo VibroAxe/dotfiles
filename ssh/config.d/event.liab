@@ -19,3 +19,9 @@ Host bastion.liab.org.uk
 Host specbastion
 	Hostname bastion.liab.org.uk
 
+Host bastion.event.local
+  ForwardAgent yes
+	Hostname bastion.event.liab
+	User vibs
+	ControlMaster true
+
