@@ -21,6 +21,7 @@ Bundle 'airblade/vim-gitgutter'
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'scrooloose/syntastic'
 Bundle 'rodjek/vim-puppet'
+Bundle 'editorconfig/editorconfig-vim'
 
 
 " Your stuff is going go here...
