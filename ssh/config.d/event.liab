@@ -25,3 +25,6 @@ Host bastion.event.local
 	User vibs
 	ControlMaster true
 
+Host mintcache
+	Hostname lancache.event.liab
+	User stratlan
