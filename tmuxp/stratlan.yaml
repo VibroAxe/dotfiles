@@ -26,7 +26,7 @@ windows:
     automatic-rename: 'off'
   panes:
   - focus: 'true'
-    ssh dns01
+  - ssh dns01
   - ssh dns02
   window_name: 'dns'
 - layout: c064,236x54,0,0,7
