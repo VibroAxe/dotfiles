@@ -44,7 +44,7 @@ if [ $err -ne 0 ]
 		echo 
 	fi
 
-if ([ $USER = "codespace" ] || ping -q -w1 -c1 google.com &>/dev/null); then
+if ([ $USER = "codespace" ] || timeout 1 ping -q -w1 -c1 google.com &>/dev/null); then
 	git pull --ff-only | grep "Fast-forward"
 	RET=$?
 	if [ $RET -eq 0 ]; then

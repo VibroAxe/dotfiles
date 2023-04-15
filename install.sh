@@ -53,7 +53,7 @@ if [[ ! "$(readlink -f $0)" == "$(readlink -f ~/.config)"* ]]; then
 fi
 
 # Assume debian/ubuntu and install tmux-next
-sudo apt-get install -y sudo vim pip
+sudo apt-get install -y sudo vim python3-pip
 
 if [[ "$OS" == "Debian GNU/Linux" ]]; then
 	if [[ "$VERSION" == "8 (jessie)" ]]; then
@@ -93,7 +93,7 @@ git config --global pull.rebase true # Force existing branches to use rebase.
 git config --global push.default current
 
 #Clone scripts and install
-git clone git@gitlab.com:VibroAxe/scripts.git ~/scripts
+git clone git@github.com:VibroAxe/scripts.git ~/scripts
 
 #Finally install and link the dotfiles 
 ~/.config/installdots.sh
