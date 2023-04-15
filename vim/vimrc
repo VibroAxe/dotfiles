@@ -10,18 +10,18 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()"
 
 " let Vundle manage Vundle, required
-Bundle 'gmarik/Vundle.vim'
-Bundle 'gmarik/sudo-gui.vim'
+Plugin 'gmarik/Vundle.vim'
+Plugin 'gmarik/sudo-gui.vim'
 "Bundle 'vim-airline/vim-airline'
 "Bundle 'vim-airline/vim-airline-themes'
-Bundle 'itchyny/lightline.vim'
-Bundle 'itchyny/vim-gitbranch'
-Bundle 'nanotech/jellybeans.vim'
-Bundle 'airblade/vim-gitgutter'
-Bundle 'nathanaelkane/vim-indent-guides'
-Bundle 'scrooloose/syntastic'
-Bundle 'rodjek/vim-puppet'
-Bundle 'editorconfig/editorconfig-vim'
+Plugin 'itchyny/lightline.vim'
+Plugin 'itchyny/vim-gitbranch'
+Plugin 'nanotech/jellybeans.vim'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'scrooloose/syntastic'
+Plugin 'rodjek/vim-puppet'
+Plugin 'editorconfig/editorconfig-vim'
 
 
 " Your stuff is going go here...
@@ -113,9 +113,9 @@ autocmd BufReadPre,FileReadPre *.ino nmap <leader>u :Upload<CR>
 " ---------------
 " Vundle
 " ---------------
-nmap <Leader>bi :BundleInstall<CR>
-nmap <Leader>bu :BundleInstall!<CR> " Because this also updates
-nmap <Leader>bc :BundleClean<CR>
+nmap <Leader>vi :PluginInstall<CR>
+nmap <Leader>vu :PluginInstall!<CR> " Because this also updates
+nmap <Leader>vc :PluginClean<CR>
 
 " ---------------
 " Syntastic
