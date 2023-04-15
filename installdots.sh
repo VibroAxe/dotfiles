@@ -82,7 +82,7 @@ git_clone_or_pull https://github.com/nojhan/liquidprompt.git ~/.config/liquidpro
 update_link ~/.config/vim ~/.vim
 update_link ~/.config/vim/vimrc ~/.vimrc
 git_clone_or_pull http://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-tmux new-session -d -s vundle 'vim +PluginInstall +qall'
+tmux new-session -d -s vundle 'vim +PluginClean +PluginInstall +qall'
 
 #Tmux
 update_link ~/.config/tmuxp ~/.tmuxp
