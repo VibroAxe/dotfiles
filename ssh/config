@@ -8,6 +8,10 @@ Host *
 	ExitOnForwardFailure yes
   ServerAliveInterval 300
 	ServerAliveCountMax 3
+	ControlMaster auto
+	ControlPersist 1m
+	Controlpath ~/.ssh/sock/ssh-%r@%h:%p.sock
+
 
 host virt-*
 	user root

@@ -1,0 +1,6 @@
+host pod*
+	User nvidia
+	ControlMaster auto
+	ControlPersist 10m
+	Controlpath ~/.ssh/sock/ssh-%r@%h:%p.sock
+	ForwardAgent yes

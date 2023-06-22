@@ -1,2 +1,5 @@
 .DS_Store
 .netrwhist
+dconf
+enchant
+gtk-3.0

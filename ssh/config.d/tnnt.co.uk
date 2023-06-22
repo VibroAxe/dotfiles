@@ -25,6 +25,9 @@ host *.tnnt.co.uk !bastion.tnnt.co.uk !smartie.tnnt.co.uk
   ProxyJump bastion.tnnt.co.uk
   ProxyCommand ssh -W %h:%p bastion.tnnt.co.uk
 
+host lysmarine.tnnt.co.uk
+	user user
+
 host lanager.tnnt.co.uk
   ForwardAgent Yes
   HostName lanager.tnnt.co.uk
