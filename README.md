@@ -32,8 +32,8 @@ Functionality for nested tmuxs (depth of one)
 * `<prefix>-` Splits pane horiztonally
 * `<prefix>|` Splits pane vertically
 * `<prefix>D` Duplicates pane into vertical split
-* `<prefix>``C-d``-` Duplicates pane into horizontal split
-* `<prefix>``C-d``|` Duplicates pane into vertical split
+* `<prefix>`>`C-d`>`-` Duplicates pane into horizontal split
+* `<prefix>`>`C-d`>`|` Duplicates pane into vertical split
 * `<prefix>s` Syncronises all panes
 
 ### dotvim
