@@ -15,7 +15,8 @@ call vundle#begin()"
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
-Plugin 'gmarik/sudo-gui.vim'
+Plugin 'vim-scripts/sudo.vim'
+"Plugin 'gmarik/sudo-gui.vim'
 "Bundle 'vim-airline/vim-airline'
 "Bundle 'vim-airline/vim-airline-themes'
 Plugin 'itchyny/lightline.vim'
@@ -116,6 +117,11 @@ autocmd BufReadPre,FileReadPre *.ino nmap <leader>U :Upload<CR>
 autocmd BufReadPre,FileReadPre *.ino nmap <leader>u :Upload<CR>
 
 "Configure Plugins
+
+" ---------------
+"  Sudo
+" ---------------
+command -bang W SudoWrite %
 
 " ---------------
 " Vundle
