@@ -4,7 +4,7 @@ Include config.d/*
 
 Host *
   HashKnownHosts no
-	ForwardAgent no
+	ForwardAgent yes
 	ExitOnForwardFailure yes
   ServerAliveInterval 300
 	ServerAliveCountMax 3
