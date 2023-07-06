@@ -14,7 +14,7 @@ git-connect() {
 	#	echo "Loading keys"
 		load-ssh-keys
 	fi
-	command git $@
+	command git "$@"
 }
 
 alias git="git-connect"
