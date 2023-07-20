@@ -79,9 +79,12 @@ if grep -qE "(microsoft)" /proc/version &> /dev/null ; then
 	VER=2
 	#WSL2, get pageant
 	mkdir -p ~/.ssh
-	sudo apt install socat
-	wget https://github.com/BlackReloaded/wsl2-ssh-pageant/releases/download/v1.2.0/wsl2-ssh-pageant.exe -O ~/.ssh/wsl2-ssh-pageant.exe
-	chmod +x ~/.ssh/wsl2-ssh-pageant.exe
+	sudo apt install socat wslu vim-gtk3
+	WINHOME=`wslpath "$(wslvar USERPROFILE)"`
+	mkdir -p $WINHOME/bin
+	wget https://github.com/BlackReloaded/wsl2-ssh-pageant/releases/download/v1.2.0/wsl2-ssh-pageant.exe -O $WINHOME/bin/wsl2-ssh-pageant.exe
+	chmod +x $WINHOME/bin/wsl2-ssh-pageant.exe
+	ln -s $WINHOME/bin/wsl2-ssh-pageant.exe ~/.ssh/
 fi
 
 pip install --user tmuxp
