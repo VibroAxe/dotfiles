@@ -97,6 +97,9 @@ git config --global push.default current
 
 #Clone scripts and install
 git clone https://github.com/VibroAxe/scripts.git ~/scripts
+pushd ~/scripts
+git remote set-url origin --push git@github.com:VibroAxe/scripts.git
+popd
 
 #Finally install and link the dotfiles 
 ~/.config/installdots.sh
