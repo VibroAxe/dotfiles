@@ -56,11 +56,11 @@ function update_link() {
 	ln -s $s $t
 }
 
-if [[ "$USER" != "codespace" ]]; then 
-	INTERACTIVE=false
- 	echo "Codespaces detected, installing dotfiles non interactively"
+if [[ "$USER" == "codespace" ]]; then
+        INTERACTIVE=false
+        echo "Codespaces detected, installing dotfiles non interactively"
 else
-	INTERACTIVE=true
+        INTERACTIVE=true
 fi
 
 cd ~
