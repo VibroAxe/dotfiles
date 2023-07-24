@@ -93,6 +93,19 @@ if grep -qE "(microsoft)" /proc/version &> /dev/null ; then
 	ln -s $WINHOME/bin/wsl2-ssh-pageant.exe ~/.ssh/
 fi
 
+#liquid prompt
+which acpi
+if [ $? -eq 1 ]; then
+	if [[ "$USER" != "codespace" ]]; then 
+		read -p "Couldn't find acpi command, install? [Yn]" choice
+		choice=${choice:-y}
+		choice=`echo "$choice" | tr '[:upper:]' '[:lower:]'`
+		if [[ $choice == "y" ]]; then
+			sudo apt install acpi -y
+		fi
+  	fi
+fi
+
 pip install --user tmuxp
 
 #Setup git
