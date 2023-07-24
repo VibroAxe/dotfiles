@@ -31,11 +31,11 @@ function update_link() {
 	fi
 	if [ -f $t ]; then
 		#if file delete
-		read -p "$t already exists, happy to DELETE and overwrite? [Yn]" choice
+		$INTERACTIVE && read -p "$t already exists, happy to DELETE and overwrite? [Yn]" choice
 		choice=${choice:-y}
 		choice=`echo "$choice" | tr '[:upper:]' '[:lower:]'`
 		if [[ $choice == "y" ]]; then
-			rm $t;
+  			mv $t $t.bak;
 		else
 			echo "Not creating link"
 			return;
@@ -43,7 +43,7 @@ function update_link() {
 	fi
 	if [ -d $t ]; then
 		#if directory delete recursively
-		read -p "$t already exists, happy to RECURSIVELY DELETE and overwrite? [Yn]" choice
+		$INTERACTIVE && read -p "$t already exists, happy to RECURSIVELY DELETE and overwrite? [Yn]" choice
 		choice=${choice:-y}
 		choice=`echo "$choice" | tr '[:upper:]' '[:lower:]'`
 		if [[ $choice == "y" ]]; then
@@ -55,6 +55,12 @@ function update_link() {
 	fi
 	ln -s $s $t
 }
+
+if [[ "$USER" != "codespace" ]]; then 
+	INTERACTIVE=false
+else
+	INTERACTIVE=true
+fi
 
 cd ~
 
