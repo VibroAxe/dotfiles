@@ -66,16 +66,7 @@ update_link ~/.config/bash/profile ~/.profile
 update_link ~/.config/bash/dir_colors ~/.dir_colors
 update_link ~/.config/bash/bashrc ~/.bashrc
 
-#liquid prompt
-which acpi
-if [ $? -eq 1 ]; then
-	read -p "Couldn't find acpi command, install? [Yn]" choice
-	choice=${choice:-y}
-	choice=`echo "$choice" | tr '[:upper:]' '[:lower:]'`
-	if [[ $choice == "y" ]]; then
-		sudo apt install acpi -y
-	fi
-fi
+
 git_clone_or_pull https://github.com/nojhan/liquidprompt.git ~/.config/liquidprompt/liquidprompt
 
 #Dotvim
