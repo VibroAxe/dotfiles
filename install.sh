@@ -108,8 +108,10 @@ fi
 pip install --user tmuxp
 
 #Setup git
-git config --global user.name "VibroAxe"
-git config --global user.email "vibs@macrolevel.co.uk"
+if [[ "$USER" != "codespace" ]]; then
+	git config --global user.name "VibroAxe"
+	git config --global user.email "vibs@macrolevel.co.uk"
+fi
 git config --global pull.rebase true # Force existing branches to use rebase.
 git config --global push.default current
 
