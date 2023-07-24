@@ -120,5 +120,7 @@ git remote set-url origin --push git@github.com:VibroAxe/scripts.git
 popd
 
 #Finally install and link the dotfiles 
+echo Installing Dots
 ~/.config/installdots.sh
-
+echo Done Installing Dots
+echo Install complete
