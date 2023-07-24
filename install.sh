@@ -37,14 +37,14 @@ else
 fi
 
 # If we aren't checked out to ~/.config then create some links
-if [[ ! "$(readlink -f $0)" == "$(readlink -f ~/.config)"* ]]; then
+if [[ ! "$(dirname $(readlink -f $0))" == "$(readlink -f ~/.config)"* ]]; then
 	confmove=0
 	if [ -d ~/.config ]; then
 		echo "Backing up existing .config"
 		confmove=1
 		mv ~/.config ~/.config2
 	fi
-	ln -s $(readlink -f $0) ~/.config
+	ln -s $(dirname $(readlink -f $0)) ~/.config
 	if [ $confmove ]; then
 		echo "Importing legacy .config"
 		mv ~/.config2/* ~/.config/
