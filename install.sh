@@ -30,11 +30,14 @@ elif [ -f /etc/SuSe-release ]; then
 elif [ -f /etc/redhat-release ]; then
     # Older Red Hat, CentOS, etc.
     ...
+elif [ 
 else
     # Fall back to uname, e.g. "Linux <version>", also works for BSD, etc.
     OS=$(uname -s)
     VER=$(uname -r)
 fi
+
+echo "Detected OS: $OS @ $VER"
 
 # If we aren't checked out to ~/.config then create some links
 if [[ ! "$(dirname $(readlink -f $0))" == "$(readlink -f ~/.config)"* ]]; then
@@ -53,6 +56,7 @@ if [[ ! "$(dirname $(readlink -f $0))" == "$(readlink -f ~/.config)"* ]]; then
 fi
 
 # Assume debian/ubuntu and install tmux-next
+sudo apt update
 sudo apt-get install -y sudo vim python3-pip
 
 if [[ "$OS" == "Debian GNU/Linux" ]]; then
@@ -60,6 +64,8 @@ if [[ "$OS" == "Debian GNU/Linux" ]]; then
 		sudo apt-get install -y -t jessie-backports tmux
 	elif [[ "$VERSION" == "9 (stretch)" ]]; then
 		sudo apt-get install -y -t stretch-backports tmux
+  	else
+   		sudo apt install tmux
 	fi
 fi
 if [[ "$OS" == "Ubuntu" ]]; then 
@@ -70,7 +76,7 @@ if [[ "$OS" == "Ubuntu" ]]; then
 		sudo apt-get install -yqqu python-software-properties software-properties-common
 		sudo apt-get install -yqq tmux-next
 	else
-		sudo apt-get install -y tmux
+		sudo apt install -y tmux
 	fi
 fi
 
