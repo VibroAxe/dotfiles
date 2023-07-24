@@ -30,7 +30,6 @@ elif [ -f /etc/SuSe-release ]; then
 elif [ -f /etc/redhat-release ]; then
     # Older Red Hat, CentOS, etc.
     ...
-elif [ 
 else
     # Fall back to uname, e.g. "Linux <version>", also works for BSD, etc.
     OS=$(uname -s)
