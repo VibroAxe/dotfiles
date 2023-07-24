@@ -59,8 +59,14 @@ function update_link() {
 if [[ "$USER" == "codespace" ]]; then
         INTERACTIVE=false
         echo "Codespaces detected, installing dotfiles non interactively"
+elif [ -z "$PS1" ]; then
+	INTERACTIVE=false
+        echo No PS1, This shell is not interactive
 else
-        INTERACTIVE=true
+	case "$-" in
+		*i*)	INTERACTIVE=true;;
+		*)	INTERACTIVE=false;;
+	esac
 fi
 
 cd ~
