@@ -90,6 +90,7 @@ if grep -qE "(microsoft)" /proc/version &> /dev/null ; then
 	wget https://github.com/BlackReloaded/wsl2-ssh-pageant/releases/download/v1.2.0/wsl2-ssh-pageant.exe -O $WINHOME/bin/wsl2-ssh-pageant.exe
 	chmod +x $WINHOME/bin/wsl2-ssh-pageant.exe
 	ln -s $WINHOME/bin/wsl2-ssh-pageant.exe ~/.ssh/
+	alias gpg=gpg.exe
 fi
 
 #liquid prompt
@@ -111,9 +112,12 @@ pip install --user tmuxp
 if [[ "$USER" != "codespace" ]]; then
 	git config --global user.name "VibroAxe"
 	git config --global user.email "vibs@macrolevel.co.uk"
+	git config --global user.signingkey 870B0F17FCC20B51013482AD40B6BA8C883A7FF2
 fi
 git config --global pull.rebase true # Force existing branches to use rebase.
 git config --global push.default current
+
+gpg --import ~/.config/gpg/yubikey_stub.key
 
 #Clone scripts and install
 git clone https://github.com/VibroAxe/scripts.git ~/scripts
