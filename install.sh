@@ -117,6 +117,8 @@ if [[ "$USER" != "codespace" ]]; then
 fi
 git config --global pull.rebase true # Force existing branches to use rebase.
 git config --global push.default current
+# Force gpg signing, can be overridden with gpg commit --no-gpg-sign
+git config --global commit.gpgsign true
 
 gpg --import ~/.config/gpg/yubikey_stub.key
 
