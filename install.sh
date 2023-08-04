@@ -91,6 +91,7 @@ if grep -qE "(microsoft)" /proc/version &> /dev/null ; then
 	chmod +x $WINHOME/bin/wsl2-ssh-pageant.exe
 	ln -s $WINHOME/bin/wsl2-ssh-pageant.exe ~/.ssh/
 	alias gpg=gpg.exe
+	git config --global gpg.program gpg.exe
 fi
 
 #liquid prompt
