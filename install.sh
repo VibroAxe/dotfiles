@@ -97,7 +97,7 @@ fi
 #liquid prompt
 which acpi
 if [ $? -eq 1 ]; then
-	if [[ "$USER" != "codespace" ]]; then 
+	if [[ "$CODESPACES" != "true" ]]; then 
 		read -p "Couldn't find acpi command, install? [Yn]" choice
 		choice=${choice:-y}
 		choice=`echo "$choice" | tr '[:upper:]' '[:lower:]'`
