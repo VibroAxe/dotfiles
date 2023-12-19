@@ -64,7 +64,7 @@ if [[ "$OS" == "Debian GNU/Linux" ]]; then
 	elif [[ "$VERSION" == "9 (stretch)" ]]; then
 		sudo apt-get install -y -t stretch-backports tmux
   	else
-   		sudo apt install tmux
+   		sudo apt install -y tmux
 	fi
 fi
 if [[ "$OS" == "Ubuntu" ]]; then 
