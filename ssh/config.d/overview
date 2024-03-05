@@ -4,3 +4,7 @@ host pod*
 	ControlPersist 10m
 	Controlpath ~/.ssh/sock/ssh-%r@%h:%p.sock
 	ForwardAgent yes
+
+host ovtestdhcp 192.168.155.1
+  User ovadmin
+
