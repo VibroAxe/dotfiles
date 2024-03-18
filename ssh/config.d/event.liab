@@ -1,3 +1,9 @@
+Host rcbastion pibastion.event.liab
+	ProxyJump vibs@bastion.liab.org.uk
+	User vibs
+	Hostname localhost
+	Port 2228
+
 Host bastion.event.liab
 	ProxyJump vibs@bastion.liab.org.uk
 	Hostname localhost
