@@ -142,6 +142,7 @@ alias systemctl='sudo systemctl'
 alias service='sudo service'
 alias svi='sudoedit'
 alias reboot='sudo reboot'
+alias cls='reset'
 
 ####################################################
 # Load the bash.local if it exists                 #
