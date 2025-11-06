@@ -9,8 +9,8 @@ host ovtestdhcp 192.168.155.1
   User ovadmin
 
 #Default to nvidia for the test network. Odds are this is an advise device
-host 192.168.155.*
-	User nvidia
+host 192.168.155.* podview-*
+	User advisor
 	ControlMaster auto
 	ControlPersist 10m
 	Controlpath ~/.ssh/sock/ssh-%r@%h:%p.sock
