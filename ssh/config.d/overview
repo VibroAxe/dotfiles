@@ -15,3 +15,7 @@ host 192.168.155.* podview-*
 	ControlPersist 10m
 	Controlpath ~/.ssh/sock/ssh-%r@%h:%p.sock
 	ForwardAgent yes
+
+host 192.168.155.31 prodpod
+	host 192.168.155.31
+	StrictHostKeyChecking no
