@@ -65,6 +65,7 @@ if [[ "$OS" == "Debian GNU/Linux" ]]; then
 		sudo apt-get install -y -t stretch-backports tmux
   	else
    		sudo apt install -y tmux
+		pip install --user tmuxp
 	fi
 fi
 if [[ "$OS" == "Ubuntu" ]]; then 
@@ -75,7 +76,7 @@ if [[ "$OS" == "Ubuntu" ]]; then
 		sudo apt-get install -yqqu python-software-properties software-properties-common
 		sudo apt-get install -yqq tmux-next
 	else
-		sudo apt install -y tmux
+		sudo apt install -y tmux python3-tmuxp
 	fi
 fi
 
@@ -107,8 +108,6 @@ if [ $? -eq 1 ]; then
 		fi
   	fi
 fi
-
-pip install --user tmuxp
 
 #Setup git
 if [[ "$USER" != "codespace" ]]; then
