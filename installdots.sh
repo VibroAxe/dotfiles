@@ -80,7 +80,7 @@ update_link ~/.config/bash/dir_colors ~/.dir_colors
 update_link ~/.config/bash/bashrc ~/.bashrc
 
 
-git_clone_or_pull https://github.com/nojhan/liquidprompt.git ~/.config/liquidprompt/liquidprompt
+git_clone_or_pull https://github.com/liquidprompt/liquidprompt.git ~/.config/liquidprompt/liquidprompt
 
 #Dotvim
 update_link ~/.config/vim ~/.vim
