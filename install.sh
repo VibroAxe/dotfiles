@@ -84,6 +84,7 @@ if grep -qE "(microsoft)" /proc/version &> /dev/null ; then
 	VER=2
 	#WSL2, get pageant
 	mkdir -p ~/.ssh
+	sudo add-apt-repository ppa:wslutilities/wslu
 	sudo apt install socat wslu vim-gtk3
 	WINHOME=`wslpath "$(wslvar USERPROFILE)"`
 	mkdir -p $WINHOME/bin
